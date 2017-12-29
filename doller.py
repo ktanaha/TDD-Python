@@ -8,3 +8,6 @@ class Doller:
 
     def get_amount(self):
         return self.amount
+
+    def equals(self, other):
+        return True
