@@ -7,7 +7,4 @@ class Money:
         return self.amount
 
     def __eq__(self, other):
-        if isinstance(other, Money):
-            return self.amount == other.amount
-        else:
-            return False
+        return self.amount == other.amount and self.__class__.__name__ == other.__class__.__name__
