@@ -2,8 +2,8 @@ from .money import Money
 
 class Doller(Money):
 
-    def __init__(self, amount: int) -> None:
-        super().__init__(amount, 'USD')
+    def __init__(self, amount: int, currency: str) -> None:
+        super().__init__(amount, currency)
     
     def times(self, multiplier: int) -> 'Money':
-        return Money.doller(self.amount * multiplier)
+        return Money.doller(self._amount * multiplier)

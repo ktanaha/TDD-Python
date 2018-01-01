@@ -21,8 +21,8 @@ class MoneyTest(ut.TestCase):
         self.assertEqual(Money.franc(15), five.times(3))
 
     def test_currency(self):
-        self.assertEqual('USD', Money.doller(2).get_currency())
-        self.assertEqual('CHF', Money.franc(3).get_currency())
+        self.assertEqual('USD', Money.doller(2).currency())
+        self.assertEqual('CHF', Money.franc(3).currency())
 
 if __name__ == '__main__':
     ut.main()
