@@ -1,7 +1,10 @@
 class Expression(object):
 
-    def plus(self, addend: 'Money') -> 'Expression':
+    def plus(self, addend: 'Expression') -> 'Expression':
         pass
 
-    def reduce(self, bank: 'Bank', to: str) -> 'Money':
+    def reduce(self, bank: 'Bank', to: str) -> 'Expression':
+        pass
+
+    def plus(self, addend: 'Expression') -> 'Expression':
         pass

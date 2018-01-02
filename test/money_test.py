@@ -24,34 +24,42 @@ class MoneyTest(ut.TestCase):
         sum = five.plus(five)
         bank = Bank()
         reduced = bank.reduce(sum, 'USD')
-        self.assertEquals(Money.doller(10), reduced)
+        self.assertEqual(Money.doller(10), reduced)
 
     def test_plus_return_sums(self):
         five = Money.doller(5)
         result = five.plus(five)
         sum = result
-        self.assertEquals(five, sum.augend())
-        self.assertEquals(five, sum.addend())
+        self.assertEqual(five, sum.augend())
+        self.assertEqual(five, sum.addend())
 
     def test_reduce_sum(self):
         sum = Sum(Money.doller(3), Money.doller(4))
         bank = Bank()
         result = bank.reduce(sum, 'USD')
-        self.assertEquals(Money.doller(7), result)
+        self.assertEqual(Money.doller(7), result)
 
     def test_reduce_money(self):
         bank = Bank()
         result = bank.reduce(Money.doller(1), 'USD')
-        self.assertEquals(Money.doller(1), result)
+        self.assertEqual(Money.doller(1), result)
 
     def test_reduce_money_different_currency(self):
         bank = Bank()
         bank.add_rate('CHF', 'USD', 2)
         result = bank.reduce(Money.franc(2), 'USD')
-        self.assertEquals(Money.doller(1), result)
+        self.assertEqual(Money.doller(1), result)
 
     def test_identify_rate(self):
-        self.assertEquals(1, Bank().rate('USD', 'USD'))
+        self.assertEqual(1, Bank().rate('USD', 'USD'))
+
+    def test_mixed_addition(self):
+        fiveBucks = Money.doller(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+        result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD')
+        self.assertEqual(Money.doller(10), result)
 
 if __name__ == '__main__':
     ut.main()

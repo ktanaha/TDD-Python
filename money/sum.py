@@ -7,9 +7,12 @@ class Sum(Expression):
         self._addend = addend
 
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
-        amount = self._augend.amount() + self._addend.amount()
+        amount = self._augend.reduce(bank, to).amount() + self._addend.reduce(bank, to).amount()
         from .money import Money
         return Money(amount, to)
+
+    def plus(self, addend: 'Expression') -> 'Expression':
+        pass
 
     def augend(self) -> 'Money':
         return self._augend
