@@ -1,5 +1,6 @@
 import unittest as ut
 from money.money import Money
+from money.bank import Bank
 
 class MoneyTest(ut.TestCase):
 
@@ -16,6 +17,13 @@ class MoneyTest(ut.TestCase):
     def test_currency(self):
         self.assertEqual('USD', Money.doller(2).currency())
         self.assertEqual('CHF', Money.franc(3).currency())
+
+    def test_simple_addition(self):
+        five = Money.doller(5)
+        sum = five.plus(five)
+        bank = Bank()
+        reduced = bank.reduce(sum, 'USD')
+        self.assertEquals(Money.doller(10), reduced)
 
 if __name__ == '__main__':
     ut.main()
