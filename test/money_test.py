@@ -50,5 +50,8 @@ class MoneyTest(ut.TestCase):
         result = bank.reduce(Money.franc(2), 'USD')
         self.assertEquals(Money.doller(1), result)
 
+    def test_identify_rate(self):
+        self.assertEquals(1, Bank().rate('USD', 'USD'))
+
 if __name__ == '__main__':
     ut.main()

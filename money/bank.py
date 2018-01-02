@@ -9,9 +9,7 @@ class Bank(object):
         return source.reduce(self, to)
 
     def add_rate(self, frm: str, to: str, rate: int) -> None:
-        pair = Pair(frm, to)
-        self.rates[pair] = rate
+        self.rates[Pair(frm, to)] = rate
 
     def rate(self, frm: str, to: str) -> int:
-        pair = Pair(frm, to)
-        return self.rates.get(pair, 1)
+        return self.rates.get(Pair(frm, to), 1)

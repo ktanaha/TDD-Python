@@ -8,4 +8,4 @@ class Pair():
         return (self.frm == other.frm) and (self.to == other.to)
     
     def __hash__(self) -> hash:
-        return hash(self.frm + self.to)
+        return 0
