@@ -1,5 +1,4 @@
 from .expression import Expression
-from .sum import Sum
 
 class Money(Expression):
 
@@ -13,11 +12,12 @@ class Money(Expression):
     def __str__(self) -> str:
         return 'amount = {0} currency = {1}'.format(str(self._amount), self._currency)
     
+    def plus(self, addend: 'Expression') -> 'Expression':
+        from .sum import Sum
+        return Sum(self, addend)
+
     def times(self, multiplier: int) -> 'Expression':
         return Money(self._amount * multiplier, self._currency)
-
-    def plus(self, addend: 'Expression') -> 'Expression':
-        return Sum(self, addend)
     
     def reduce(self, bank: 'Bank', to: str) -> 'Expression':
         rate = bank.rate(self._currency, to)

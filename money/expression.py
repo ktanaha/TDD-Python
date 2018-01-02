@@ -5,6 +5,3 @@ class Expression(object):
 
     def reduce(self, bank: 'Bank', to: str) -> 'Expression':
         pass
-
-    def plus(self, addend: 'Expression') -> 'Expression':
-        pass
