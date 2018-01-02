@@ -1,4 +1,5 @@
 from .expression import Expression
+from .sum import Sum
 
 class Money(Expression):
 
@@ -13,10 +14,16 @@ class Money(Expression):
         return Money(self._amount * multiplier, self._currency)
 
     def plus(self, addend: 'Money') -> 'Expression':
-        return Money(self._amount + addend._amount, self._currency)
+        return Sum(self, addend)
     
+    def reduce(self, to: str) -> 'Money':
+        return self
+
     def currency(self) -> str:
         return self._currency
+
+    def amount(self) -> int:
+        return self._amount
 
     @staticmethod
     def doller(amount: int) -> 'Money':
